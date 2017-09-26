@@ -1,1 +1,1 @@
-# PHP Blog
+"# blog, example for php practice" 
