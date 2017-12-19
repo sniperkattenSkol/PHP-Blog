@@ -1,6 +1,6 @@
 body{
 	background: linear-gradient(270deg, #360100, #001F20, #002A03,#361900);
-	animation: AnimateBg 60s ease infinite;
+	animation: AnimateBg 999s ease infinite;
 	background-size: 400% 400%;
 	margin: 0;
 }
@@ -35,7 +35,7 @@ img{
 	
 	margin: auto;
 	color: white;
-	margin-bottom: 50px;
+	margin-bottom: 50§px;
 }
 
 
