@@ -52,10 +52,13 @@ $stmt->execute();
 
 //Post button, inserts data into the database(post).
 if(isset($_POST['postButtn'])){
-$sql = "INSERT INTO post (author, title, message)VALUES(' " . $_POST['postAuthor'] . "','" . $_POST['postName']."','".$_POST['postMsg']."')";
+$sql = "INSERT INTO post (author, title, message)VALUES(' "  htmlspecialchars($_POST['postAuthor'], ENT_QUOTES); . "','" . htmlspecialchars($_POST['postName'], ENT_QUOTES)."','".htmlspecialchars($_POST['postMsg'], ENT_QUOTES) ."')";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 }
+//!!!!
+//FICK INTE htmlspecialchars att fungera, (T_STRING) , måste ta bort några "" och '' från koden min
+//!!!
 
 //prepares the database for posting
 $sql="select * from post";
@@ -65,6 +68,7 @@ $stmt->execute();
 
 //Posts every post in the database(post)
 foreach ($stmt as $key => $value) {
+	//if the post title is empty, deleted
 	if (empty($value["title"])) {
 		$sql = "DELETE FROM post WHERE post.id = $value[id]";
 		$stmt = $dbh->prepare($sql);
