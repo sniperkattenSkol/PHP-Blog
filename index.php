@@ -44,15 +44,20 @@ $stmt->execute();
 }
 
 //edit post button
-if(isset($_POST['editPost'])){
+/*if(isset($_POST['editPost'])){
 $sql = "DELETE FROM post";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
-}
+}*/
 
 //Post button, inserts data into the database(post).
 if(isset($_POST['postButtn'])){
-$sql = "INSERT INTO post (author, title, message)VALUES(' "  htmlspecialchars($_POST['postAuthor'], ENT_QUOTES); . "','" . htmlspecialchars($_POST['postName'], ENT_QUOTES)."','".htmlspecialchars($_POST['postMsg'], ENT_QUOTES) ."')";
+$postName = filter_input(INPUT_POST, "postName", FILTER_SANITIZE_SPECIAL_CHARS);
+$postAuthor = filter_input(INPUT_POST, "postAuthor", FILTER_SANITIZE_SPECIAL_CHARS);
+$postMsg = filter_input(INPUT_POST, "postMsg", FILTER_SANITIZE_SPECIAL_CHARS);
+$picture = filter_input(INPUT_POST, "picture", FILTER_SANITIZE_SPECIAL_CHARS);
+
+$sql = "INSERT INTO post (author, title, message)VALUES('" .htmlspecialchars($postAuthor, ENT_QUOTES) . "','" . htmlspecialchars($postName, ENT_QUOTES)."','".htmlspecialchars($postMsg, ENT_QUOTES) ."','".htmlspecialchars($picture, ENT_QUOTES) ."')";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 }
